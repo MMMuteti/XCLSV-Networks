@@ -1,4 +1,5 @@
-<!DOCTYPE html> 
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,15 +7,136 @@
   <title>XCLSV Networks | Branding Experts</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
 </head>
+<!-- Before </body> -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
 <body class="bg-white text-gray-800 font-sans">
-  <!-- Content trimmed for brevity -->
+  <!-- Navbar -->
+  <header class="bg-black text-white px-6 py-4 flex justify-between items-center shadow-md sticky top-0 z-50">
+    <h1 class="text-2xl font-bold">XCLSV Networks</h1>
+    <nav class="space-x-4">
+      <a href="#home" class="hover:underline">Home</a>
+      <a href="#services" class="hover:underline">Services</a>
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#contact" class="hover:underline">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<section id="home" class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-gray-900 to-gray-700 text-white px-4">
+  <h2 class="text-4xl md:text-5xl font-extrabold mb-4" data-aos="fade-down" data-aos-delay="100">Your Brand. Elevated.</h2>
+  <p class="text-lg md:text-xl mb-8 max-w-xl" data-aos="fade-up" data-aos-delay="300">
+    At XCLSV Networks, we build brands that speak, connect, and convert. Let’s bring your vision to life.
+  </p>
+  <a href="#contact" class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition" data-aos="zoom-in" data-aos-delay="500">Let’s Talk</a>
+</section>
+
+
+  <!-- Services -->
+<section id="services" class="py-16 bg-gray-50 text-center px-4" data-aos="fade-up">
+  <h3 class="text-3xl font-bold mb-10" data-aos="fade-down" data-aos-delay="100">Our Services</h3>
+  <div class="grid gap-10 md:grid-cols-3 max-w-6xl mx-auto">
+    <div class="bg-white p-6 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="200">
+      <h4 class="text-xl font-semibold mb-2">Brand Identity</h4>
+      <p>Logos, color palettes, typography – everything that defines your visual DNA.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="400">
+      <h4 class="text-xl font-semibold mb-2">Strategy & Positioning</h4>
+      <p>We help define your brand voice, message, and value proposition clearly and creatively.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="600">
+      <h4 class="text-xl font-semibold mb-2">Digital Presence</h4>
+      <p>We design websites, social media kits, and digital assets that resonate.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- About -->
+<section id="about" class="py-16 px-6 bg-white text-center" data-aos="fade-up">
+  <h3 class="text-3xl font-bold mb-6" data-aos="fade-down" data-aos-delay="100">About XCLSV Networks</h3>
+  <p class="max-w-3xl mx-auto text-lg" data-aos="fade-up" data-aos-delay="300">
+    We're a collective of designers, strategists, and storytellers passionate about transforming businesses into unforgettable brands. Our process is collaborative, agile, and always client-focused.
+  </p>
+</section>
+
+  <!-- Contact -->
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-gray-900 text-white px-4 aos-init" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <!-- Contact Form -->
+    <div>
+      <h3 class="text-3xl font-bold mb-4">Let's Connect</h3>
+      <p class="mb-6">We’d love to hear about your next project. Fill out the form below and we’ll respond promptly.</p>
+
+      <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4 text-left">
+        <input type="text" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-lg text-black" />
+        <input type="email" name="email" required placeholder="Your Email" class="w-full px-4 py-3 rounded-lg text-black" />
+        <textarea name="message" rows="5" required placeholder="Your Message" class="w-full px-4 py-3 rounded-lg text-black"></textarea>
+        <button type="submit" class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition w-full">Send Message</button>
+      </form>
+
+      <!-- Success message -->
+      <p id="success-message" class="mt-4 text-green-400 font-semibold hidden">Thank you! Your message has been sent.</p>
+    </div>
+
+    <!-- Google Map -->
+    <div class="w-full h-full rounded-xl overflow-hidden shadow-lg">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.182566430162!2d36.8057695!3d-1.2920651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d4f0c0ed0b%3A0xbc9efc30956aa888!2sNairobi!5e0!3m2!1sen!2ske!4v1690000000000" 
+        width="100%" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Smooth Scroll Script -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
+
+  // Show success message after form submission (optional, basic version)
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = this;
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        document.getElementById("success-message").classList.remove("hidden");
+      }
+    });
+  });
+</script>
+
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+
+
+  <!-- Footer -->
   <footer class="bg-black text-white text-center py-4">
     <p>© 2025 XCLSV Networks. All rights reserved.</p>
   </footer>
-  <script src="js/main.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
 </body>
 </html>
