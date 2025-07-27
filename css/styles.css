@@ -1,2 +1,19 @@
 
-/* Custom CSS can go here */
+/* styles.css - Optional custom styling */
+
+body {
+  scroll-behavior: smooth;
+}
+
+h2 {
+  letter-spacing: -0.5px;
+}
+
+.hero-button {
+  transition: all 0.3s ease-in-out;
+}
+
+.hero-button:hover {
+  transform: scale(1.05);
+}
+
