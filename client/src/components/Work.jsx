@@ -20,9 +20,13 @@ const WORK = [
   ["identity", "art-h", "Name", "Naming", "Agro range names", "Short names that are easy to say and easy to print on a sack."],
 ];
 
+function matches(filter, cat) {
+  return filter === "all" || cat === filter;
+}
+
 export default function Work() {
   const [filter, setFilter] = useState("all");
-  const visible = WORK.filter(([cat]) => filter === "all" || cat === filter);
+  const anyShown = WORK.some(([cat]) => matches(filter, cat));
 
   return (
     <section className="section" id="work" aria-labelledby="work-title">
@@ -50,21 +54,18 @@ export default function Work() {
           ))}
         </Reveal>
         <div className="work-grid">
-          {WORK.map(([cat, art, artLabel, kicker, title, copy]) => {
-            const show = filter === "all" || cat === filter;
-            return (
-              <Reveal as="article" className="work-card" key={title} hidden={!show}>
-                <div className={`art ${art}`} aria-hidden="true">
-                  {artLabel}
-                </div>
-                <p className="kicker">{kicker}</p>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </Reveal>
-            );
-          })}
+          {WORK.map(([cat, art, artLabel, kicker, title, copy]) => (
+            <Reveal as="article" className="work-card" key={title} hidden={!matches(filter, cat)}>
+              <div className={`art ${art}`} aria-hidden="true">
+                {artLabel}
+              </div>
+              <p className="kicker">{kicker}</p>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </Reveal>
+          ))}
         </div>
-        <p id="work-empty" hidden={visible.length > 0}>
+        <p hidden={anyShown}>
           Nothing in this filter.
         </p>
       </div>

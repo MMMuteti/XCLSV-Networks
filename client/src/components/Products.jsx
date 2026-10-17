@@ -14,7 +14,7 @@ const PRODUCTS = [
   },
   {
     image: "/images/custom-dashboard.png",
-    alt: "Hands typing on a laptop that shows charts and a business dashboard",
+    alt: "People holding colorful gears together",
     title: "Custom Dashboard Development",
     subtitle: "Turn business data into clear decisions",
     points: [
@@ -49,7 +49,7 @@ const PRODUCTS = [
 
 export default function Products() {
   return (
-    <section className="section products" id="products" aria-labelledby="products-title">
+    <section className="section" id="products" aria-labelledby="products-title">
       <div className="wrap">
         <h2 id="products-title" className="sr-only">
           Products

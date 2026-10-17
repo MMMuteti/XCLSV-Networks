@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Field from "./Field.jsx";
 import Reveal from "./Reveal.jsx";
 
 const SERVICES = [
@@ -102,7 +103,7 @@ export default function Contact() {
             <a href="mailto:xclsvnetworks@outlook.com">xclsvnetworks@outlook.com</a>
           </address>
         </Reveal>
-        <Reveal as="form" className="form" id="contact-form" noValidate onSubmit={onSubmit}>
+        <Reveal as="form" className="form" noValidate onSubmit={onSubmit}>
           {!success && (
             <>
               <Field id="name" label="Name" error={errors.name}>
@@ -122,7 +123,7 @@ export default function Contact() {
               <Field id="message" label="Project notes" error={errors.message}>
                 <textarea id="message" name="message" rows="5" required value={values.message} onChange={update} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : undefined} />
               </Field>
-              <button className="btn btn--gold" id="form-submit" type="submit" disabled={pending}>
+              <button className="btn btn--gold" type="submit" disabled={pending}>
                 {pending ? "Sending…" : "Send project notes"}
               </button>
             </>
@@ -132,26 +133,14 @@ export default function Contact() {
               {status}
             </p>
           )}
-          <p className="form-success" id="form-success" role="status" tabIndex={-1} hidden={!success} ref={successRef}>
+          <p className="form-success" role="status" tabIndex={-1} hidden={!success} ref={successRef}>
             {success}
           </p>
-          <button className="btn btn--ghost" id="form-again" type="button" hidden={!success} onClick={again}>
+          <button className="btn btn--ghost" type="button" hidden={!success} onClick={again}>
             Write another note
           </button>
         </Reveal>
       </div>
     </section>
-  );
-}
-
-function Field({ id, label, error, children }) {
-  return (
-    <div className="field">
-      <label htmlFor={id}>{label}</label>
-      {children}
-      <p className="field-error" id={`${id}-error`} hidden={!error}>
-        {error || ""}
-      </p>
-    </div>
   );
 }

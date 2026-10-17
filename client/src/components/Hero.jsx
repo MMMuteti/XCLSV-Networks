@@ -1,10 +1,10 @@
 import { scrollToHash } from "../scroll.js";
 
 const POINTS = [
-  ["hero__swatch--cyan", "Website Development", "Designing and developing professional business websites."],
-  ["hero__swatch--blue", "Payment Integration", "Implementing seamless online payment systems."],
-  ["hero__swatch--magenta", "Custom Dashboard Development", "Building dashboards for business monitoring, reporting, and data management."],
-  ["hero__swatch--gold", "Business Platform Development", "Creating integrated digital platforms that automate workflows and streamline business operations."],
+  { swatch: "hero__swatch--cyan", title: "Website Development", copy: "Designing and developing professional business websites." },
+  { swatch: "hero__swatch--blue", title: "Payment Integration", copy: "Implementing seamless online payment systems." },
+  { swatch: "hero__swatch--magenta", title: "Custom Dashboard Development", copy: "Building dashboards for business monitoring, reporting, and data management." },
+  { swatch: "hero__swatch--gold", title: "Business Platform Development", copy: "Creating integrated digital platforms that automate workflows and streamline business operations." },
 ];
 
 function jump(event, hash) {
@@ -34,12 +34,12 @@ export default function Hero() {
       <aside className="hero__board" aria-label="Product board">
         <p className="hero__board-kicker">Product board</p>
         <ul className="hero__points">
-          {POINTS.map(([swatch, title, copy]) => (
-            <li key={title}>
-              <span className={`hero__swatch ${swatch}`} aria-hidden="true" />
+          {POINTS.map((point) => (
+            <li key={point.title}>
+              <span className={`hero__swatch ${point.swatch}`} aria-hidden="true" />
               <div>
-                <strong>{title}</strong>
-                <span>{copy}</span>
+                <strong>{point.title}</strong>
+                <span>{point.copy}</span>
               </div>
             </li>
           ))}

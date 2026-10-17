@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
+import Field from "./Field.jsx";
 
 const PRODUCTS = [
   "Website Development",
@@ -26,11 +27,9 @@ function localErrors(values) {
 }
 
 function focusable(root) {
-  return [...root.querySelectorAll("button, [href], input, select, textarea")].filter((el) => {
-    if (el.disabled || el.hidden) return false;
-    if (el.closest("[hidden]")) return false;
-    return true;
-  });
+  return [...root.querySelectorAll("button, [href], input, select, textarea")].filter(
+    (el) => !el.disabled && !el.hidden && !el.closest("[hidden]")
+  );
 }
 
 export default function ContactModal({ openerRef, onClose }) {
@@ -57,27 +56,22 @@ export default function ContactModal({ openerRef, onClose }) {
         return;
       }
       if (event.key !== "Tab" || !dialog) return;
+
       const items = focusable(dialog);
       if (!items.length) {
         event.preventDefault();
         dialog.focus();
         return;
       }
+
       const first = items[0];
       const last = items[items.length - 1];
       const active = document.activeElement;
-      if (!items.includes(active)) {
-        event.preventDefault();
-        (event.shiftKey ? last : first).focus();
-        return;
-      }
-      if (event.shiftKey && active === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
-      }
+      const backward = event.shiftKey;
+      const trapped = !items.includes(active) || (backward ? active === first : active === last);
+      if (!trapped) return;
+      event.preventDefault();
+      (backward ? last : first).focus();
     }
 
     document.addEventListener("keydown", onKey);
@@ -108,8 +102,7 @@ export default function ContactModal({ openerRef, onClose }) {
     setSuccess("");
     setStatus("");
     if (Object.keys(nextErrors).length) {
-      const first = Object.keys(nextErrors)[0];
-      document.getElementById(`popup-${first}`)?.focus();
+      focusField(Object.keys(nextErrors)[0]);
       return;
     }
 
@@ -130,8 +123,7 @@ export default function ContactModal({ openerRef, onClose }) {
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
         setErrors(data.errors || { message: "The studio server could not accept these notes." });
-        const first = Object.keys(data.errors || {})[0];
-        if (first) document.getElementById(`popup-${first}`)?.focus();
+        focusField(Object.keys(data.errors || {})[0]);
         return;
       }
       setSuccess(data.message || "Your notes were received.");
@@ -266,14 +258,6 @@ export default function ContactModal({ openerRef, onClose }) {
   );
 }
 
-function Field({ id, label, error, children }) {
-  return (
-    <div className="field">
-      <label htmlFor={id}>{label}</label>
-      {children}
-      <p className="field-error" id={`${id}-error`} hidden={!error}>
-        {error || ""}
-      </p>
-    </div>
-  );
+function focusField(name) {
+  if (name) document.getElementById(`popup-${name}`)?.focus();
 }

@@ -15,13 +15,17 @@ const SERVICES = [
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function text(value) {
+  return String(value ?? "").trim();
+}
+
 function validateContact(body) {
-  const name = String(body?.name ?? "").trim();
-  const email = String(body?.email ?? "").trim();
-  const phone = String(body?.phone ?? "").trim();
-  const company = String(body?.company ?? "").trim();
-  const service = String(body?.service ?? "").trim();
-  const message = String(body?.message ?? "").trim();
+  const name = text(body?.name);
+  const email = text(body?.email);
+  const phone = text(body?.phone);
+  const company = text(body?.company);
+  const service = text(body?.service);
+  const message = text(body?.message);
   const errors = {};
 
   if (name.length < 2) errors.name = "Enter your name (at least 2 characters).";
@@ -39,7 +43,7 @@ function validateContact(body) {
   if (message.length < 12) errors.message = "Add a short note (at least 12 characters).";
   else if (message.length > 2000) errors.message = "Keep the note under 2000 characters.";
 
-  return { name, email, phone, company, service, message, errors };
+  return { name, service, errors };
 }
 
 const app = express();

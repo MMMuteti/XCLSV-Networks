@@ -191,24 +191,31 @@ body.nav-open, body.modal-open { overflow: hidden; }
 .card:hover, .work-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
 .card span { color: var(--magenta); font-weight: 800; }
 
-.products { background: var(--bg); }
 .product-row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.35rem;
-  align-items: start;
+  align-items: stretch;
 }
 .product-card {
   min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   position: relative;
   border-radius: 20px;
 }
 .product-card__media {
+  flex: 0 0 auto;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 18px;
 }
 .product-card img {
+  display: block;
   width: 100%;
+  height: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 18px;
@@ -390,8 +397,7 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
 .product-card.reveal {
   transition: opacity 0.55s ease, transform 0.28s ease, box-shadow 0.28s ease;
 }
-.product-card.reveal:hover,
-.product-card.reveal:focus-visible {
+.product-card.reveal:hover {
   transform: translateY(-8px);
   box-shadow:
     0 18px 34px rgba(0, 0, 0, 0.38),
@@ -399,8 +405,7 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
     0 0 28px rgba(0, 180, 230, 0.42);
   z-index: 1;
 }
-.product-card:hover img,
-.product-card:focus-visible img {
+.product-card:hover img {
   transform: scale(1.06);
 }
 
@@ -468,9 +473,7 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
   .product-card,
   .product-card img { transition: none; }
   .product-card.reveal:hover,
-  .product-card.reveal:focus-visible,
-  .product-card:hover img,
-  .product-card:focus-visible img { transform: none; }
+  .product-card:hover img { transform: none; }
   .marquee { overflow: visible; }
   .marquee__track { width: auto; flex-wrap: wrap; justify-content: center; padding-inline: 1rem; }
   .marquee__track span:nth-child(n + 9) { display: none; }

@@ -13,10 +13,10 @@ export default function Process() {
   const [active, setActive] = useState(0);
 
   function onKey(event, index) {
-    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    const direction = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+    if (!direction) return;
     event.preventDefault();
-    const next =
-      event.key === "ArrowRight" ? (index + 1) % STEPS.length : (index - 1 + STEPS.length) % STEPS.length;
+    const next = (index + direction + STEPS.length) % STEPS.length;
     setActive(next);
     document.getElementById(`step-tab-${next + 1}`)?.focus();
   }
