@@ -9,8 +9,13 @@ const LINKS = [
   ["#contact", "Contact"],
 ];
 
-export default function Footer() {
+export default function Footer({ onContact }) {
   function go(event, hash) {
+    if (hash === "#contact") {
+      event.preventDefault();
+      onContact(event.currentTarget);
+      return;
+    }
     if (scrollToHash(hash)) event.preventDefault();
   }
 

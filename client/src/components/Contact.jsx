@@ -2,14 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal.jsx";
 
 const SERVICES = [
-  "Brand identity",
-  "Packaging",
-  "Logo system",
-  "Brand guidelines",
-  "Social kit",
-  "Print & merch",
-  "Naming",
-  "Launch campaign",
+  "Website Development",
+  "Payment Integration",
+  "Custom Dashboard Development",
+  "Business Platform Development",
 ];
 
 const EMPTY = { name: "", email: "", service: "", message: "" };

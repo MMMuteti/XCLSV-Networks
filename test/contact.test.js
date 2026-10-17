@@ -5,7 +5,7 @@ import { app } from "../server/index.js";
 const valid = {
   name: "Amina Kariuki",
   email: "amina@example.com",
-  service: "Brand identity",
+  service: "Website Development",
   message: "We need a label system for a spice range.",
 };
 
@@ -50,6 +50,16 @@ test("empty contact payload returns 400", async () => {
   assert.ok(data.errors.email);
   assert.ok(data.errors.service);
   assert.ok(data.errors.message);
+});
+
+test("unknown service returns 400", async () => {
+  const { status, data } = await post({ ...valid, service: "Brand identity" });
+  assert.equal(status, 400);
+  assert.equal(data.ok, false);
+  assert.ok(data.errors.service);
+  assert.equal(data.errors.name, undefined);
+  assert.equal(data.errors.email, undefined);
+  assert.equal(data.errors.message, undefined);
 });
 
 test("invalid contact payload returns 400", async () => {

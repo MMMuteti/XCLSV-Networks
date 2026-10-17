@@ -7,14 +7,10 @@ const distDir = path.join(__dirname, "..", "dist");
 const PORT = Number(process.env.PORT) || 3000;
 
 const SERVICES = [
-  "Brand identity",
-  "Packaging",
-  "Logo system",
-  "Brand guidelines",
-  "Social kit",
-  "Print & merch",
-  "Naming",
-  "Launch campaign",
+  "Website Development",
+  "Payment Integration",
+  "Custom Dashboard Development",
+  "Business Platform Development",
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -22,6 +18,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function validateContact(body) {
   const name = String(body?.name ?? "").trim();
   const email = String(body?.email ?? "").trim();
+  const phone = String(body?.phone ?? "").trim();
+  const company = String(body?.company ?? "").trim();
   const service = String(body?.service ?? "").trim();
   const message = String(body?.message ?? "").trim();
   const errors = {};
@@ -33,12 +31,15 @@ function validateContact(body) {
     errors.email = "Enter a valid email address.";
   }
 
+  if (phone.length > 40) errors.phone = "Phone number must be 40 characters or fewer.";
+  if (company.length > 120) errors.company = "Company name must be 120 characters or fewer.";
+
   if (!SERVICES.includes(service)) errors.service = "Choose a service.";
 
   if (message.length < 12) errors.message = "Add a short note (at least 12 characters).";
   else if (message.length > 2000) errors.message = "Keep the note under 2000 characters.";
 
-  return { name, email, service, message, errors };
+  return { name, email, phone, company, service, message, errors };
 }
 
 const app = express();

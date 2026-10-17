@@ -9,7 +9,7 @@ const LINKS = [
   ["#faq", "FAQ"],
 ];
 
-export default function Header() {
+export default function Header({ onContact }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -27,7 +27,7 @@ export default function Header() {
 
   useEffect(() => {
     function onKey(event) {
-      if (event.key === "Escape" && open) setOpen(false);
+      if (event.key === "Escape" && open && !document.querySelector("[aria-modal='true']")) setOpen(false);
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -37,6 +37,12 @@ export default function Header() {
     if (!scrollToHash(hash)) return;
     event.preventDefault();
     setOpen(false);
+  }
+
+  function contact(event) {
+    event.preventDefault();
+    setOpen(false);
+    onContact(event.currentTarget);
   }
 
   return (
@@ -55,11 +61,11 @@ export default function Header() {
             {label}
           </a>
         ))}
-        <a className="btn btn--gold nav__cta" href="#contact" onClick={(event) => go(event, "#contact")}>
+        <a className="btn btn--gold nav__cta" href="#contact" onClick={contact}>
           Contact us
         </a>
       </nav>
-      <a className="btn btn--gold header-cta" href="#contact" onClick={(event) => go(event, "#contact")}>
+      <a className="btn btn--gold header-cta" href="#contact" onClick={contact}>
         Contact us
       </a>
       <button

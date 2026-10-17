@@ -1,3 +1,4 @@
+import { useCallback, useRef, useState } from "react";
 import { scrollToHash } from "./scroll.js";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
@@ -10,15 +11,25 @@ import Work from "./components/Work.jsx";
 import Stats from "./components/Stats.jsx";
 import Faq from "./components/Faq.jsx";
 import Contact from "./components/Contact.jsx";
+import ContactModal from "./components/ContactModal.jsx";
 import Footer from "./components/Footer.jsx";
 
 export default function App() {
+  const [contactOpen, setContactOpen] = useState(false);
+  const contactOpener = useRef(null);
+  const closeContact = useCallback(() => setContactOpen(false), []);
+
+  function openContact(trigger) {
+    contactOpener.current = trigger || null;
+    setContactOpen(true);
+  }
+
   return (
     <>
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <Header />
+      <Header onContact={openContact} />
       <main id="main">
         <div className="first-screen">
           <Hero />
@@ -47,7 +58,8 @@ export default function App() {
         </section>
         <Contact />
       </main>
-      <Footer />
+      <Footer onContact={openContact} />
+      {contactOpen && <ContactModal openerRef={contactOpener} onClose={closeContact} />}
     </>
   );
 }
