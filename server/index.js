@@ -1,6 +1,6 @@
 import express from "express";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, "..", "dist");
@@ -77,6 +77,13 @@ app.use((req, res) => {
   res.status(404).type("text").send("Not found");
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`XCLSV server listening on http://0.0.0.0:${PORT}`);
-});
+const isDirectRun =
+  process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
+
+if (isDirectRun) {
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`XCLSV server listening on http://0.0.0.0:${PORT}`);
+  });
+}
+
+export { app };
