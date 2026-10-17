@@ -57,7 +57,9 @@ export default function Products() {
         <div className="product-row">
           {PRODUCTS.map((product) => (
             <Reveal as="article" className="product-card" key={product.title}>
-              <img src={product.image} alt={product.alt} />
+              <div className="product-card__media">
+                <img src={product.image} alt={product.alt} />
+              </div>
               <h3>{product.title}</h3>
               <p>{product.subtitle}</p>
               <ul>
