@@ -19,8 +19,10 @@ export default function App() {
       </a>
       <Header />
       <main id="main">
-        <Hero />
-        <Marquee />
+        <div className="first-screen">
+          <Hero />
+          <Marquee />
+        </div>
         <About />
         <Services />
         <Process />
