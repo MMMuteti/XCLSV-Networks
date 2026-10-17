@@ -119,13 +119,17 @@ body.nav-open { overflow: hidden; }
 }
 .hero__points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
 .hero__points li {
-  display: grid; grid-template-columns: 8px 1fr; gap: 0.65rem; align-items: start;
+  display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 0.65rem; align-items: start;
   padding: 0.5rem 0.7rem;
   border-radius: 14px;
   background: rgba(7, 14, 32, 0.46);
   border: 1px solid rgba(255, 255, 255, 0.22);
 }
-.hero__points strong { display: block; color: #fff; font-size: 0.92rem; letter-spacing: -0.02em; line-height: 1.2; }
+.hero__points li > div { min-width: 0; }
+.hero__points strong {
+  display: block; color: #fff; font-size: 0.92rem; letter-spacing: -0.02em; line-height: 1.2;
+  overflow-wrap: break-word;
+}
 .hero__points li span:last-child { display: block; color: rgba(246, 246, 248, 0.9); font-size: 0.82rem; line-height: 1.35; }
 .hero__swatch { width: 8px; height: 100%; min-height: 2.4rem; border-radius: 999px; }
 .hero__swatch--cyan { background: var(--cyan); }
@@ -163,18 +167,72 @@ body.nav-open { overflow: hidden; }
   background: var(--magenta); transform: rotate(45deg);
 }
 
-.about, .contact { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2rem; align-items: start; }
-.why { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
-.why li, .card, .work-card, .step-panel, .contact-card, .form, .counter {
+.about { text-align: center; }
+.about .reveal { max-width: 48rem; margin-inline: auto; }
+.about p { font-size: 1.3rem; line-height: 1.65; }
+.contact { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2rem; align-items: start; }
+.card, .work-card, .step-panel, .contact-card, .form, .counter {
   background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px;
 }
-.why li { padding: 0.9rem 1rem; color: var(--muted); }
-.why strong { color: var(--text); }
 
 .card-grid, .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; margin-top: 1.5rem; }
 .card, .work-card { padding: 1.1rem; transition: transform 0.25s ease, border-color 0.25s ease; }
 .card:hover, .work-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
 .card span { color: var(--magenta); font-weight: 800; }
+
+.products { background: var(--bg); }
+.product-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.35rem;
+  align-items: start;
+}
+.product-card { min-width: 0; }
+.product-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+}
+.product-card h3 {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #fff;
+  margin: 0.9rem 0 0.35rem;
+}
+.product-card p {
+  color: #c8cdd8;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+}
+.product-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.product-card li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  color: #d5dae4;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.product-card li::before {
+  content: "";
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  margin-top: 0.42em;
+  border-radius: 50%;
+  background: var(--gold);
+}
 
 .stepper { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0; }
 .step, .filter {
@@ -255,8 +313,8 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 @media (max-width: 980px) {
-  .card-grid, .work-grid, .counters { grid-template-columns: 1fr 1fr; }
-  .about, .contact, .footer-grid { grid-template-columns: 1fr; }
+  .card-grid, .work-grid, .counters, .product-row { grid-template-columns: 1fr 1fr; }
+  .contact, .footer-grid { grid-template-columns: 1fr; }
   .nav { gap: 0.85rem; }
   .hero { grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); padding-inline: 4vw; }
   .hero__board { width: 100%; }
@@ -277,7 +335,7 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
   }
   .nav.is-open { display: flex; }
   .nav a:not(.btn) { font-size: 1.25rem; padding: 0.55rem 0; width: 100%; }
-  .card-grid, .work-grid, .counters { grid-template-columns: 1fr; }
+  .card-grid, .work-grid, .counters, .product-row { grid-template-columns: 1fr; }
   .hero {
     grid-template-columns: 1fr;
     align-items: start;

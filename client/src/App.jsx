@@ -4,6 +4,7 @@ import Hero from "./components/Hero.jsx";
 import Marquee from "./components/Marquee.jsx";
 import About from "./components/About.jsx";
 import Services from "./components/Services.jsx";
+import Products from "./components/Products.jsx";
 import Process from "./components/Process.jsx";
 import Work from "./components/Work.jsx";
 import Stats from "./components/Stats.jsx";
@@ -25,6 +26,7 @@ export default function App() {
         </div>
         <About />
         <Services />
+        <Products />
         <Process />
         <Work />
         <Stats />
